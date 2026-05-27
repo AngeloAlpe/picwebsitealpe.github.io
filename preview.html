@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Hanunoo Mangyan | Keepers of Bamboo Wisdom</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#0f0f0f;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    body::-webkit-scrollbar{
+      width:10px;
+    }
+
+    body::-webkit-scrollbar-thumb{
+      background:#9f7a49;
+      border-radius:20px;
+    }
+
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      z-index:1000;
+      background:rgba(0,0,0,0.55);
+      backdrop-filter:blur(10px);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 8%;
+    }
+
+    nav h1{
+      font-family:'Cinzel',serif;
+      color:#d8b47c;
+      letter-spacing:2px;
+      font-size:1.3rem;
+    }
+
+    nav ul{
+      display:flex;
+      gap:25px;
+      list-style:none;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:white;
+      font-size:0.95rem;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#d8b47c;
+    }
+
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.7)),
+      url('https://images.summitmedia-digital.com/spotph/images/2025/01/02/cebpac-spot-mainimage-opt1-1735810700.jpg?purpose=fullsize');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:20px;
+    }
+
+    .hero-content{
+      max-width:900px;
+      animation:fadeUp 2s ease;
+    }
+
+    .hero h2{
+      font-size:4rem;
+      font-family:'Cinzel',serif;
+      margin-bottom:20px;
+      color:#f0d7aa;
+      text-shadow:0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .hero p{
+      font-size:1.2rem;
+      line-height:1.8;
+      color:#ddd;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:35px;
+      padding:14px 35px;
+      border:2px solid #d8b47c;
+      color:#fff;
+      text-decoration:none;
+      transition:0.4s;
+      border-radius:40px;
+      letter-spacing:1px;
+    }
+
+    .btn:hover{
+      background:#d8b47c;
+      color:black;
+      transform:translateY(-3px);
+    }
+
+    section{
+      padding:120px 10%;
+      position:relative;
+    }
+
+    .section-title{
+      font-family:'Cinzel',serif;
+      font-size:3rem;
+      margin-bottom:25px;
+      color:#d8b47c;
+    }
+
+    .section-text{
+      line-height:2;
+      color:#d8d8d8;
+      font-size:1.05rem;
+      max-width:1000px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:60px;
+      align-items:center;
+    }
+
+    .split img{
+      width:100%;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.5);
+      transition:0.5s;
+    }
+
+    .split img:hover{
+      transform:scale(1.03);
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+      margin-top:50px;
+    }
+
+    .gallery img{
+      width:100%;
+      height:350px;
+      object-fit:cover;
+      border-radius:18px;
+      transition:0.5s;
+    }
+
+    .gallery img:hover{
+      transform:scale(1.04);
+      filter:brightness(1.1);
+    }
+
+    .quote{
+      margin-top:40px;
+      padding:35px;
+      border-left:5px solid #d8b47c;
+      background:rgba(255,255,255,0.04);
+      font-style:italic;
+      line-height:1.8;
+      border-radius:15px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+
+    .card{
+      background:rgba(255,255,255,0.04);
+      padding:35px;
+      border-radius:20px;
+      backdrop-filter:blur(5px);
+      transition:0.5s;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+      background:rgba(255,255,255,0.08);
+    }
+
+    .card h3{
+      margin-bottom:20px;
+      color:#e5c38f;
+      font-family:'Cinzel',serif;
+    }
+
+    footer{
+      padding:60px 10%;
+      background:#090909;
+      text-align:center;
+    }
+
+    footer h2{
+      font-family:'Cinzel',serif;
+      color:#d8b47c;
+      margin-bottom:20px;
+    }
+
+    footer p{
+      color:#aaa;
+      line-height:1.8;
+    }
+
+    .overlay{
+      position:absolute;
+      width:500px;
+      height:500px;
+      background:radial-gradient(circle,#a17d4d33,transparent);
+      top:0;
+      right:-100px;
+      z-index:-1;
+      filter:blur(40px);
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:900px){
+
+      .hero h2{
+        font-size:2.5rem;
+      }
+
+      .split{
+        grid-template-columns:1fr;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      section{
+        padding:90px 7%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <h1>HANUNOO MANGYAN</h1>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#script">Script</a></li>
+      <li><a href="#poetry">Poetry</a></li>
+      <li><a href="#arts">Arts</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Keepers of Bamboo Wisdom</h2>
+
+      <p>
+        Deep within the mountains of Mindoro lives a culture where poetry is carved onto bamboo,
+        ancient scripts still breathe through generations, and traditions echo like songs through the forest wind.
+      </p>
+
+      <a href="#about" class="btn">Deeper into the mountains...</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="overlay"></div>
+
+    <div class="split">
+      <div>
+        <h2 class="section-title">Who are the Hanunoo Mangyan?</h2>
+
+        <p class="section-text">
+          The Hanunoo Mangyan are one of the eight Mangyan groups indigenous to Mindoro, Philippines.
+          Known for preserving their ancestral traditions, they continue to practice ancient writing,
+          bamboo poetry, weaving, music, and oral storytelling traditions even in the modern era.
+          <br><br>
+          Their communities are often located in mountainous and forested areas, where culture and nature
+          remain deeply intertwined like roots beneath rainforest soil.
+        </p>
+      </div>
+
+      <img src="https://photos.smugmug.com/Travel/2018/Oriental-Mindoro/Panaytayan-Mangyan/i-Sd5qQFp/1/f3b0db80/L/P1020980-L.jpg?purpose=fullsize">
+    </div>
+  </section>
+
+  <section id="script">
+    <div class="split">
+
+      <img src="https://images.openai.com/static-rsc-4/5ZRlRNRTsCJ-9gNRK137Vx6DV8YQv2wVfpjEG34yi-N707J2-7g3jIGZRRZmIhEQxzP3aCR9bJrJm3B7qW6Wn1JO1oNaA4nIkvbhjIqZhwAcGmEVTI2KPvJEQC4WAzT2e3aLSHtmD6xrNThCQoEtri5rJieM7oCr7z1JcL_9bPkDoy8jxRTm6Mj8lC7umUFH?purpose=fullsize">
+
+      <div>
+        <h2 class="section-title">Surat Mangyan</h2>
+
+        <p class="section-text">
+          One of the most extraordinary treasures of the Hanunoo Mangyan is their ancient writing system called
+          <strong>Surat Mangyan</strong>.
+          <br><br>
+          Unlike ordinary alphabets, this script is syllabic and traditionally carved into bamboo using knives.
+          It belongs to the family of ancient Philippine scripts related to Baybayin.
+          <br><br>
+          In 1999, the script became part of UNESCO's Memory of the World Register, preserving its importance
+          as one of the Philippines’ living pre-colonial writing systems.
+        </p>
+
+        <div class="quote">
+          “A language carved on bamboo becomes memory that cannot easily disappear.”
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="poetry">
+
+    <h2 class="section-title">Ambahan Poetry</h2>
+
+    <p class="section-text">
+      Ambahan is the poetic heartbeat of the Hanunoo Mangyan people.
+      These poems are traditionally carved into bamboo and recited through rhythmic chanting.
+      Most Ambahan poems follow a seven-syllable structure and contain messages about love,
+      friendship, advice, journeys, and reflections about life.
+    </p>
+
+    <div class="gallery">
+
+      <img src="https://images.openai.com/static-rsc-4/MJZxSm7w59bOSSDdLWKjzKhhFMK_BbdkvMkxPRI6MDdMM7qGZV9RJZoXzf1_gTyw5NzPx-_h3PKV9Spj-VNBbbgWOnOcDpSQa8OZv_CoGp1BtrkTFQFzQIjIhoxP6jiVP5RqlVyE3PIFN5BOnXg5TIxNiPWs0GHqd1Ry5aSbxaHkmshu3C4GqK6pNQ7f86C_?purpose=fullsize">
+
+      <img src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTH9_ci_bvodf-xPZmmxJa4k-HfJShkG8AqsA&s?purpose=fullsize">
+
+      <img src="https://lh5.googleusercontent.com/proxy/UYupvNE3YHaiB9332AGbrDwtiPpWDFgAWMOWIZVvaFjuseKJCQQmqIUm7NBpIYIBNmLcnCRmeZ7IY0ovMkC3o82oKFdNtIEvno2ZkPrWNX2fH19W4dK4Aq0?purpose=fullsize">
+
+    </div>
+
+  </section>
+
+  <section id="arts">
+
+    <h2 class="section-title">Arts, Weaving & Music</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>Traditional Weaving</h3>
+
+        <p>
+          Hanunoo textiles use geometric embroidery, indigenous dyes,
+          and nature-inspired patterns reflecting harmony with the environment.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Bamboo Craftsmanship</h3>
+
+        <p>
+          Bamboo becomes both canvas and instrument, transformed into poetry carvings,
+          containers, tools, and artistic expressions.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Music & Courtship</h3>
+
+        <p>
+          Courtship often includes flutes, guitars, violins, and poetic serenades,
+          creating traditions where music and language intertwine beautifully.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="split">
+
+      <div>
+        <h2 class="section-title">Ginaw Bilog</h2>
+
+        <p class="section-text">
+          Ginaw Bilog became one of the most important cultural guardians of the Hanunoo Mangyan.
+          Through preserving Ambahan poetry and the Mangyan script,
+          he became the first recipient of the prestigious GAMABA or National Living Treasure Award.
+          <br><br>
+          He once described Ambahan as:
+        </p>
+
+        <div class="quote">
+          “The key to the Mangyan soul.”
+        </div>
+      </div>
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/President_Fidel_V._Ramos_meeting_Ginaw_Bilog_%281993%29_%28cropped%29.png?purpose=fullsize">
+
+    </div>
+
+  </section>
+
+  <section id="gallery">
+
+    <h2 class="section-title">Cultural Gallery</h2>
+
+    <div class="gallery">
+
+      <img src="https://c8.alamy.com/comp/DR3JKC/hanunoo-mangyan-women-selling-their-crops-at-a-mangyan-market-near-DR3JKC.jpg?purpose=fullsize">
+
+      <img src="https://www.usphsociety.org/wp-content/uploads/2018/08/Mangyan-Gifts-cropped.jpg?purpose=fullsize">
+
+      <img src="https://p1media.prosperna.ph/media%2F66e1a5833f60e17bf7613306%2F1726152831573-Hanunuo%20Black%20Jacket.jpg?purpose=fullsize">
+
+      <img src="https://images.summitmedia-digital.com/spotph/images/2025/01/02/1-cebpac-spot-insert2-1735811108.jpg?purpose=fullsize">
+
+    </div>
+
+  </section>
+
+  <footer>
+
+    <h2>Preserving Living Heritage</h2>
+
+    <p>
+      The Hanunoo Mangyan culture reminds the modern world that identity can survive through stories,
+      songs, carvings, and memory.
+      <br><br>
+      Angelo B. Alpe | BSFT - 2B • Philippine Indigenous Community
+    </p>
+
+  </footer>
+
+</body>
+</html>
